@@ -51,10 +51,16 @@ app.get('/products/:pid', function (req, res) {
 });
 
 app.get('/users', function (req, res) {
-    db.any('select * from users')
+    var id = req.param('id');
+    var sql = 'select * from users';
+
+    if (id) {
+        sql += ' where id =' + id;
+    }
+    db.any(sql)
         .then(function (data) {
             console.log('DATA:' + data);
-            res.render('pages/user', { users: data });
+            res.render('pages/user', { users: dataa });
         })
         .catch(function (error) {
             console.log('ERROR:' + error);
