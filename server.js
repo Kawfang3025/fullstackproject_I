@@ -59,7 +59,7 @@ app.get('/user', function (req, res) {
     db.any(sql)
         .then(function (data) {
             console.log('DATA:' + data);
-            res.render('pages/user', { users: dataa });
+            res.render('pages/user', { users: data });
         })
         .catch(function (error) {
             console.log('ERROR:' + error);
