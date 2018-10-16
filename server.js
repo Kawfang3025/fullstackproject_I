@@ -98,7 +98,7 @@ app.post('/products/update', function (req, res) {
     res.redirect('/products');
 });
 
-app.post('/products_add', function (req, res) {
+app.post('/products/add', function (req, res) {
     res.render('pages/products_add');
 });
 
