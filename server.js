@@ -101,7 +101,7 @@ app.post('/products/update', function (req, res) {
     console.log('UPDATE:' + sql);
 });
 
-app.post('/products/add', function (req, res) {
+app.post('/productsadd', function (req, res) {
     res.render('pages/products_add');
 });
 
