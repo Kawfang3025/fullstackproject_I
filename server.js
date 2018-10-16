@@ -66,7 +66,7 @@ app.get('/users', function (req, res) {
         })
 });
 
-app.get('/user/:id', function (req, res) {
+app.get('/users/:id', function (req, res) {
     var id = req.params.id;
     var sql = 'select * from users';
 
@@ -77,7 +77,7 @@ app.get('/user/:id', function (req, res) {
     db.any(sql)
         .then(function (data) {
             console.log('DATA:' + data);
-            res.render('pages/user_add', { users: data[0] });
+            res.render('pages/users_edit', { users: data[0] });
         })
         .catch(function (error) {
             console.log('ERROR:' + error);
