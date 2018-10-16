@@ -88,14 +88,17 @@ app.get('/user/:id', function (req, res) {
 app.get('/index', function (req, res) {
     res.render('pages/index');
 });
+app.post('/user/add',function (req, res) {
+    res.render('pages/user_add');
+});  
 app.post('/products/update', function (req, res) {
     var id = req.body.id;
     var title = req.body.title;
     var price = req.body.price;
     var sql = `update product set title =${title},price = ${price} where id = ${id}`;
     // db.none
-    console.log('UPDATE:' + sql);
     res.redirect('/products');
+    console.log('UPDATE:' + sql);
 });
 
 app.post('/products/add', function (req, res) {
