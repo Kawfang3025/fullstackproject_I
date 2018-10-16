@@ -88,7 +88,7 @@ app.get('/users/:id', function (req, res) {
 app.get('/index', function (req, res) {
     res.render('pages/index');
 });
-app.post('/user_add',function (req, res) {
+app.post('/user/padd',function (req, res) {
     res.render('pages/user_add');
 }); 
 app.post('/products/update', function (req, res) {
