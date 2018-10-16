@@ -90,7 +90,7 @@ app.get('/index', function (req, res) {
 });
 app.post('/users/add',function (req, res) {
     res.render('pages/user_add');
-});  
+}); 
 app.post('/products/update', function (req, res) {
     var id = req.body.id;
     var title = req.body.title;
