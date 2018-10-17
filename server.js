@@ -7,10 +7,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
+//home page
 app.get('/', function (req, res) {
     res.render('pages/index');
 });
+app.get('/index', function (req, res) {
+    res.render('pages/index');
+});
 
+//About Page
 app.get('/about', function (req, res) {
     var name = 'CHAWEEWAN SOOKWAN';
     var hobbies = ['Music', 'Movie', 'Programming'];
@@ -18,6 +23,7 @@ app.get('/about', function (req, res) {
     res.render('pages/about', { fullname: name, hobbies: hobbies, bdate: bdate });
 });
 
+//Products Data
 app.get('/products', function (req, res) {
     var id = req.param('id');
     var sql = 'select * from products';
@@ -35,8 +41,6 @@ app.get('/products', function (req, res) {
         })
 
 });
-
-
 app.get('/products/:pid', function (req, res) {
     var pid = req.params.pid;
     var sql = "select * from products where id =" + pid;
@@ -49,15 +53,20 @@ app.get('/products/:pid', function (req, res) {
         })
 
 });
-
 app.get('/addproducts', function (req, res) {
     res.render('pages/addproducts');
 });
-
-app.get('/addusers', function (req, res) {
-    res.render('pages/addusers');
+app.post('/products/update', function (req, res) {
+    var id = req.body.id;
+    var title = req.body.title;
+    var price = req.body.price;
+    var sql = `update products set title =${title},price = ${price} where id = ${id}`;
+    // db.none
+    res.redirect('/products');
+    console.log('UPDATE:' + sql);
 });
 
+//Users Data
 app.get('/users', function (req, res) {
     var id = req.param('id');
     var sql = 'select * from users';
@@ -73,7 +82,9 @@ app.get('/users', function (req, res) {
             console.log('ERROR:' + error);
         })
 });
-
+app.get('/addusers', function (req, res) {
+    res.render('pages/addusers');
+});
 app.get('/users/:id', function (req, res) {
     var id = req.params.id;
     var sql = 'select * from users';
@@ -91,34 +102,16 @@ app.get('/users/:id', function (req, res) {
             console.log('ERROR:' + error);
         })
 });
-
-
-app.get('/index', function (req, res) {
-    res.render('pages/index');
-});
-
-app.post('/products/update', function (req, res) {
-    var id = req.body.id;
-    var title = req.body.title;
-    var price = req.body.price;
-    var sql = `update products set title =${title},price = ${price} where id = ${id}`;
-    // db.none
-    res.redirect('/products');
-    console.log('UPDATE:' + sql);
-});
-
 app.post('/users/update', function (req, res) {
     var id = req.body.id;
     var email = req.body.email;
     var password = req.body.password;
     var sql = `update users set email =${email},password = ${password} where id = ${id}`;
-    // db.none
     console.log('UPDATE:' + sql);
     res.redirect('/users');
-    
 });
 
-
+//Run App
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
     console.log('App is running on http://localhost:' + port);
