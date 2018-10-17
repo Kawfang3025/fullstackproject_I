@@ -50,6 +50,10 @@ app.get('/products/:pid', function (req, res) {
 
 });
 
+app.get('/addproducts', function (req, res) {
+    res.render('pages/addproducts');
+});
+
 app.get('/users', function (req, res) {
     var id = req.param('id');
     var sql = 'select * from users';
