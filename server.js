@@ -54,6 +54,10 @@ app.get('/addproducts', function (req, res) {
     res.render('pages/addproducts');
 });
 
+app.get('/addusers', function (req, res) {
+    res.render('pages/addusers');
+});
+
 app.get('/users', function (req, res) {
     var id = req.param('id');
     var sql = 'select * from users';
@@ -92,22 +96,28 @@ app.get('/users/:id', function (req, res) {
 app.get('/index', function (req, res) {
     res.render('pages/index');
 });
-app.post('/usersadd',function (req, res) {
-    res.render('pages/user_add');
-}); 
+
 app.post('/products/update', function (req, res) {
     var id = req.body.id;
     var title = req.body.title;
     var price = req.body.price;
-    var sql = `update product set title =${title},price = ${price} where id = ${id}`;
+    var sql = `update products set title =${title},price = ${price} where id = ${id}`;
     // db.none
     res.redirect('/products');
     console.log('UPDATE:' + sql);
 });
 
-app.post('/productsadd', function (req, res) {
-    res.render('pages/products_add');
+app.post('/users/update', function (req, res) {
+    var id = req.body.id;
+    var email = req.body.email;
+    var password = req.body.password;
+    var sql = `update users set email =${email},password = ${password} where id = ${id}`;
+    // db.none
+    console.log('UPDATE:' + sql);
+    res.redirect('/users');
+    
 });
+
 
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
