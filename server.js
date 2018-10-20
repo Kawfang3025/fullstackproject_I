@@ -15,6 +15,7 @@ app.get('/index', function (req, res) {
     res.render('pages/index');
 });
 
+
 //About Page
 app.get('/about', function (req, res) {
     var name = 'CHAWEEWAN SOOKWAN';
@@ -22,6 +23,7 @@ app.get('/about', function (req, res) {
     var bdate = '06/01/1998';
     res.render('pages/about', { fullname: name, hobbies: hobbies, bdate: bdate });
 });
+
 
 //Products Data
 app.get('/products', function (req, res) {
@@ -180,13 +182,13 @@ app.post('/users/complete', function (req, res) {
     var currentdate = new Date();
     var timestamp = currentdate.getTime();
     console.log(currentdate);
-    var datetime = currentdate.getFullYear() + "-" 
+    var datetime = currentdate.getFullYear() + "-"
         + (currentdate.getMonth() + 1) + "-"
         + currentdate.getDate() + "  "
         + currentdate.getHours() + ":"
         + currentdate.getMinutes() + ":"
-        + currentdate.getSeconds()+
-        + currentdate.getTimezoneOffset() ;
+        + currentdate.getSeconds() +
+        + currentdate.getTimezoneOffset();
     var email = req.body.email;
     var password = req.body.password;
     var sql = `insert into users (email,password,created_at) VALUES('${email}','${password}','${datetime}');`;
@@ -194,6 +196,107 @@ app.post('/users/complete', function (req, res) {
         .then(function (data) {
             console.log('DATA:' + data);
             res.redirect('/users');
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+
+});
+
+//Purchase Data
+app.get('/purchase', function (req, res) {
+    var id = req.param('id');
+    var sql = 'select * from purchases';
+    if (id) {
+        sql += ' where id =' + id;
+    }
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.render('pages/purchase', { purchase: data });
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+});
+//add data
+app.get('/addpurchase', function (req, res) {
+    res.render('pages/addpurchase');
+});
+app.get('/purchase/:id', function (req, res) {
+    var id = req.params.id;
+    var sql = 'select * from purchases';
+
+    if (id) {
+        sql += ' where id =' + id;
+    }
+
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.render('pages/purchase_edit', { purchase: data[0] });
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+});
+//update purchase
+app.post('/purchase/update', function (req, res) {
+    var id = req.body.id;
+    var name = req.body.name;
+    var address = req.body.address;
+    var state = req.body.state;
+    var zipcode = req.body.zipcode;
+    var user_id = req.body.user_id;
+
+
+    var sql = `update purchases set name ='${name}',address = '${address}',state = '${state}',zipcode = '${zipcode}',user_id = '${user_id}' where id = '${id}'`;
+    console.log('UPDATE:' + sql);
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.redirect('/purchase');
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+});
+//delete data
+app.get('/purchase/delete/:id', function (req, res) {
+    var id = req.params.id;
+    var sql = "delete from purchases where id =" + id;
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.redirect('/purchase');
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+
+});
+//add purchase
+app.post('/purchase/complete', function (req, res) {
+    var currentdate = new Date();
+    var timestamp = currentdate.getTime();
+    console.log(currentdate);
+    var datetime = currentdate.getFullYear() + "-"
+        + (currentdate.getMonth() + 1) + "-"
+        + currentdate.getDate() + "  "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds() +
+        + currentdate.getTimezoneOffset();
+    var name = req.body.name;
+    var address = req.body.address;
+    var state = req.body.state;
+    var zipcode = req.body.zipcode;
+    var user_id = req.body.user_id;
+    var sql = `insert into purchases (created_at,name,address,state,zipcode,user_id)  VALUES('${datetime}','${name}','${address}','${state}','${zipcode}','${user_id}');`;
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.redirect('/purchase');
         })
         .catch(function (error) {
             console.log('ERROR:' + error);

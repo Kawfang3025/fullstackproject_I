@@ -1,0 +1,46 @@
+<% include ../partials/header %>
+<h2>Purchases</h2>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>State</th>
+            <th>ZIPCode</th>
+            <th>User ID</th>
+            <th>
+                <a class="btn btn-danger" href="/addpurchase" role="button">Add</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% purchase.forEach(function(purchase){ %>
+        <tr>
+            <td scope="row">
+                <%= purchase.id%>
+            </td>
+            <td>
+                <%= purchase.name%>
+            </td>
+            <td>
+                <%= purchase.address%>
+            </td>
+            <td>
+                <%= purchase.state%>
+            </td>
+            <td>
+                <%= purchase.zipcode%>
+            </td>
+            <td>
+                <%= purchase.user_id%>
+            </td>
+            <td>
+                <a class="btn btn-success" href="/purchase/<%= purchase.id%>" role="button">Edit</a>
+            </td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+<% include ../partials/footer %>

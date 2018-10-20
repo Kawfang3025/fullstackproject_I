@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+<form action="/purchase/update" method="post">
+    <div class="form-group">
+      <label for="">ID</label>
+      <input type="number"
+        class="form-control" value="<%= purchase.id %>" name="id" id="" aria-describedby="helpId" placeholder="">
+      <small id="helpId" class="form-text text-muted">Purchase ID</small>
+    </div>
+    <div class="form-group">
+      <label for="">Name</label>
+      <input type="text"
+        class="form-control" value="<%= purchase.name %>" name="name" id="" aria-describedby="helpId" placeholder="">
+      <small id="helpId" class="form-text text-muted">Name</small>
+    </div>
+    <div class="form-group">
+      <label for="">Address</label>
+      <input type="text"
+        class="form-control" value="<%= purchase.address %>" name="address" id="" aria-describedby="helpId" placeholder="">
+      <small id="helpId" class="form-text text-muted">Address</small>
+    </div>
+    <div class="form-group">
+        <label for="">State</label>
+        <input type="text"
+          class="form-control" value="<%= purchase.state %>" name="state" id="" aria-describedby="helpId" placeholder="">
+        <small id="helpId" class="form-text text-muted">State</small>
+      </div>
+      <div class="form-group">
+        <label for="">ZIPCode</label>
+        <input type="text"
+          class="form-control" value="<%= purchase.zipcode %>" name="zipcode" id="" aria-describedby="helpId" placeholder="">
+        <small id="helpId" class="form-text text-muted">ZIPCode</small>
+      </div><div class="form-group">
+        <label for="">User ID</label>
+        <input type="text"
+          class="form-control" value="<%= purchase.user_id %>" name="user_id" id="" aria-describedby="helpId" placeholder="">
+        <small id="helpId" class="form-text text-muted">user ID</small>
+      </div>
+      
+    <a class="btn btn-warning" href="/purchase" role="button">Back</a>
+    <button type="submit"  class="btn btn-success">Save</button>
+    <a class="btn btn-danger text-light" onclick="confirm('Are you sure to delete?');" href="/purchase/delete/<%= purchase.id %>" role="button">Delete</a>
+    </form>
+<% include ../partials/footer %>
