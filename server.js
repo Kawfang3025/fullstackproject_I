@@ -180,15 +180,16 @@ app.get('/users/delete/:id', function (req, res) {
 //add users
 app.post('/users/complete', function (req, res) {
     var currentdate = new Date();
+    //2011-03-16 22:03:00+07
     var timestamp = currentdate.getTime();
     console.log(currentdate);
     var datetime = currentdate.getFullYear() + "-"
         + (currentdate.getMonth() + 1) + "-"
-        + currentdate.getDate() + "  "
+        + currentdate.getDate() + " "
         + currentdate.getHours() + ":"
         + currentdate.getMinutes() + ":"
-        + currentdate.getSeconds() +
-        + currentdate.getTimezoneOffset();
+        + currentdate.getSeconds() 
+        // + currentdate.getTimezoneOffset();
     var email = req.body.email;
     var password = req.body.password;
     var sql = `insert into users (email,password,created_at) VALUES('${email}','${password}','${datetime}');`;
