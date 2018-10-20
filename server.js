@@ -304,6 +304,23 @@ app.post('/purchase/complete', function (req, res) {
 
 });
 
+//pcitem
+app.get('/pcitem', function (req, res) {
+    var id = req.param('id');
+    var sql = 'select * from purchase_items';
+    if (id) {
+        sql += ' where id =' + id;
+    }
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.render('pages/pcitem', { pcitem: data });
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+});
+
 //Run App
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
