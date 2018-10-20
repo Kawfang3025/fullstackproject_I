@@ -63,8 +63,9 @@ app.post('/products/update', function (req, res) {
     var sql = `update products set title =${title},price = ${price} where id = ${id}`;
     db.any(sql)
         .then(function (data) {
-            res.redirect('/products', { product: data[0] });
             console.log('UPDATE:' + sql);
+            res.redirect('/products');
+            
         })
         .catch(function (error) {
             console.log('ERROR:' + error);
