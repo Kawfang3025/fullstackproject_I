@@ -283,17 +283,16 @@ app.post('/purchase/complete', function (req, res) {
     console.log(currentdate);
     var datetime = currentdate.getFullYear() + "-"
         + (currentdate.getMonth() + 1) + "-"
-        + currentdate.getDate() + "  "
+        + currentdate.getDate() + " "
         + currentdate.getHours() + ":"
         + currentdate.getMinutes() + ":"
-        + currentdate.getSeconds() +
-        + currentdate.getTimezoneOffset();
+        + currentdate.getSeconds() 
     var name = req.body.name;
     var address = req.body.address;
     var state = req.body.state;
     var zipcode = req.body.zipcode;
     var user_id = req.body.user_id;
-    var sql = `insert into purchases (created_at,name,address,state,zipcode,user_id)  VALUES('${currentdate}','${name}','${address}','${state}','${zipcode}','${user_id}');`;
+    var sql = `insert into purchases (created_at,name,address,state,zipcode,user_id)  VALUES('${datetime}','${name}','${address}','${state}','${zipcode}','${user_id}');`;
     db.any(sql)
         .then(function (data) {
             console.log('DATA:' + data);
