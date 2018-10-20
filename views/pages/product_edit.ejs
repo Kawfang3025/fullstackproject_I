@@ -1,5 +1,7 @@
 <% include ../partials/header %>
 <form action="/products/update" method="post">
+  <h2>PRODUCTS</h2>
+  <hr>
     <div class="form-group">
       <label for="">ID</label>
       <input type="number"
@@ -18,6 +20,8 @@
         class="form-control" value="<%= product.price %>" name="price" id="" aria-describedby="helpId" placeholder="">
       <small id="helpId" class="form-text text-muted">Product Price</small>
     </div>
-    <button type="submit"  class="btn btn-danger">Save</button>
+    <a class="btn btn-warning" href="/products" role="button">Back</a>
+    <button type="submit"  class="btn btn-success">Save</button>
+    <a class="btn btn-danger text-light" onclick="" role="button">Delete</a>
     </form>
 <% include ../partials/footer %>
