@@ -76,10 +76,18 @@ app.post('/products/update', function (req, res) {
 app.post('/products/complete', function (req, res) {
     var title = req.body.title;
     var price = req.body.price;
-    var sql = `update products set title =${title},price = ${price} where id = ${id}`;
-    // db.none
-    res.redirect('/products');
-    console.log('UPDATE:' + sql);
+    var created_at = req.body.created_at;
+    var tags = req.body.tags;
+    var sql = `insert into products  (title,price,created_at,tags) VALUES('${title}',${price},'${created_at}','{${tags}}')`;
+    db.any(sql)
+        .then(function (data){ 
+            console.log('DATA:' + data);
+            res.redirect('/products');
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+    
 });
 
 //Users Data
