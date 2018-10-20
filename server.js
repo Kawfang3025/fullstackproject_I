@@ -43,7 +43,7 @@ app.get('/products', function (req, res) {
 });
 app.get('/products/:pid', function (req, res) {
     var pid = req.params.pid;
-    var sql = "select * from products where id =" + pid +" order by id";
+    var sql = "select * from products where id =" + pid + " order by id";
     db.any(sql)
         .then(function (data) {
             res.render('pages/product_edit', { product: data[0] });
@@ -53,9 +53,11 @@ app.get('/products/:pid', function (req, res) {
         })
 
 });
+//add data
 app.get('/addproducts', function (req, res) {
     res.render('pages/addproducts');
 });
+//update data
 app.post('/products/update', function (req, res) {
     var id = req.body.id;
     var title = req.body.title;
@@ -66,13 +68,14 @@ app.post('/products/update', function (req, res) {
         .then(function (data) {
             console.log('DATA:' + data);
             res.redirect('/products');
-            
+
         })
         .catch(function (error) {
             console.log('ERROR:' + error);
         })
 
 });
+//add product
 app.post('/products/complete', function (req, res) {
     var title = req.body.title;
     var price = req.body.price;
@@ -80,16 +83,16 @@ app.post('/products/complete', function (req, res) {
     var tags = req.body.tags;
     var sql = `insert into products  (title,price,created_at,tags) VALUES('${title}',${price},'${created_at}','{${tags}}')`;
     db.any(sql)
-        .then(function (data){ 
+        .then(function (data) {
             console.log('DATA:' + data);
             res.redirect('/products');
         })
         .catch(function (error) {
             console.log('ERROR:' + error);
         })
-    
-});
 
+});
+//delete data
 app.get('/product/delete/:pid', function (req, res) {
     var pid = req.params.pid;
     var sql = "delete from products where id =" + pid;
@@ -103,6 +106,7 @@ app.get('/product/delete/:pid', function (req, res) {
         })
 
 });
+
 
 //Users Data
 app.get('/users', function (req, res) {
@@ -120,6 +124,7 @@ app.get('/users', function (req, res) {
             console.log('ERROR:' + error);
         })
 });
+//add data
 app.get('/addusers', function (req, res) {
     res.render('pages/addusers');
 });
@@ -140,13 +145,60 @@ app.get('/users/:id', function (req, res) {
             console.log('ERROR:' + error);
         })
 });
+//update user
 app.post('/users/update', function (req, res) {
     var id = req.body.id;
     var email = req.body.email;
     var password = req.body.password;
     var sql = `update users set email =${email},password = ${password} where id = ${id}`;
     console.log('UPDATE:' + sql);
-    res.redirect('/users');
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.redirect('/users');
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+});
+//delete data
+app.get('/users/delete/:id', function (req, res) {
+    var id = req.params.id;
+    var sql = "delete from users where id =" + id;
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.redirect('/users');
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+
+});
+//add users
+app.post('/users/complete', function (req, res) {
+    var currentdate = new Date();
+    var timestamp = currentdate.getTime();
+    console.log(currentdate);
+    var datetime = currentdate.getFullYear() + "-" 
+        + (currentdate.getMonth() + 1) + "-"
+        + currentdate.getDate() + "  "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds()+
+        + currentdate.getTimezoneOffset() ;
+    var email = req.body.email;
+    var password = req.body.password;
+    var sql = `insert into users (email,password,created_at) VALUES('${email}','${password}','${datetime}');`;
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.redirect('/users');
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+
 });
 
 //Run App

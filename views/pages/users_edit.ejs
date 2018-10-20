@@ -19,6 +19,9 @@
       <small id="helpId" class="form-text text-muted">Password</small>
     </div>
 
-    <button type="submit"  class="btn btn-danger">Save</button>
+
+    <a class="btn btn-warning" href="/users" role="button">Back</a>
+    <button type="submit"  class="btn btn-success">Save</button>
+    <a class="btn btn-danger text-light" onclick="confirm('Are you sure to delete?');" href="/users/delete/<%= users.id %>" role="button">Delete</a>
     </form>
 <% include ../partials/footer %>
