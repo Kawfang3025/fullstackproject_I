@@ -90,6 +90,20 @@ app.post('/products/complete', function (req, res) {
     
 });
 
+app.get('/product/delete/:pid', function (req, res) {
+    var pid = req.params.pid;
+    var sql = "delete from products where id =" + pid;
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.redirect('/products');
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+
+});
+
 //Users Data
 app.get('/users', function (req, res) {
     var id = req.param('id');

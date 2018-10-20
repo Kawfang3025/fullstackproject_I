@@ -29,6 +29,6 @@
 
     <a class="btn btn-warning" href="/products" role="button">Back</a>
     <button type="submit"  class="btn btn-success">Save</button>
-    <a class="btn btn-danger text-light" onclick="" role="button">Delete</a>
+    <a class="btn btn-danger text-light" onclick="confirm('Are you sure to delete?');" href="/product/delete/<%= product.id %>" role="button">Delete</a>
     </form>
 <% include ../partials/footer %>
