@@ -5,11 +5,23 @@
     <title>Express+EJS</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 
     <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Homenaje|Love+Ya+Like+A+Sister" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
+    <style>
+        body{ font-family: 'Homenaje', sans-serif;  
+        background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(90,92,106,1) 0%, rgba(32,45,58,1) 81.3% );
+        color: aliceblue;
+        height: 100%;
+        }
+        h2{font-family: 'Love Ya Like A Sister', cursive;}
+        nav{background-image: linear-gradient( 115.7deg,  rgba(3,79,135,1) 6.2%, rgba(0,184,214,1) 112.9% );}
+        h3{font-family: 'Love Ya Like A Sister', cursive;}
+        
+    </style>
 </head>
 
 <body>
@@ -29,7 +41,7 @@
                     <a class="nav-link" href="/about">Profile</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Information</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Report</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" href="/users">User</a> 
                         <a class="dropdown-item" href="/products">Product</a>
@@ -40,7 +52,7 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-md-0" type="submit">Search</button>
+                <button class="btn btn-outline-light my-2 my-md-0" type="submit">Search</button>
             </form>
         </div>
     </nav>
