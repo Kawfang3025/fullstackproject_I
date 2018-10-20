@@ -20,6 +20,13 @@
         class="form-control" value="<%= product.price %>" name="price" id="" aria-describedby="helpId" placeholder="">
       <small id="helpId" class="form-text text-muted">Product Price</small>
     </div>
+    <div class="form-group">
+        <label for="">Creat At</label>
+        <input type="text"
+          class="form-control" value="<%= product.created_at %>"name="creat_at" id="" aria-describedby="helpId" placeholder="" disabled >
+        <small id="helpId" class="form-text text-muted">Creat At</small>
+      </div>
+
     <a class="btn btn-warning" href="/products" role="button">Back</a>
     <button type="submit"  class="btn btn-success">Save</button>
     <a class="btn btn-danger text-light" onclick="" role="button">Delete</a>
