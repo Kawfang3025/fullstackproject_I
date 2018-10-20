@@ -292,7 +292,7 @@ app.post('/purchase/complete', function (req, res) {
     var state = req.body.state;
     var zipcode = req.body.zipcode;
     var user_id = req.body.user_id;
-    var sql = `insert into purchases (created_at,name,address,state,zipcode,user_id)  VALUES('${datetime}','${name}','${address}','${state}','${zipcode}','${user_id}');`;
+    var sql = `insert into purchases (created_at,name,address,state,zipcode,user_id)  VALUES('${currentdate}','${name}','${address}','${state}','${zipcode}','${user_id}');`;
     db.any(sql)
         .then(function (data) {
             console.log('DATA:' + data);
