@@ -304,23 +304,30 @@ app.post('/purchase/complete', function (req, res) {
 
 });
 
-//pcitem
+//report purchase
 app.get('/pcitem', function (req, res) {
-    var id = req.param('id');
-    var sql = 'select * from purchase_items';
-    if (id) {
-        sql += ' where id =' + id;
-    }
+    var sql = 'SELECT purchase_items.purchase_id ,purchases.name ,purchase_items.price ,purchase_items.quantity , purchase_items.price*purchase_items.quantity AS Total FROM purchase_items INNER JOIN purchases ON purchase_items.purchase_id = purchases.id;';
     db.any(sql)
         .then(function (data) {
             console.log('DATA:' + data);
-            res.render('pages/pcitem', { pcitem: data });
+            res.render('pages/pcitem', { totalpurchase: data });
         })
         .catch(function (error) {
             console.log('ERROR:' + error);
         })
 });
-
+//report contact
+app.get('/contact', function (req, res) {
+    var sql = 'SELECT users.id,purchases.name,purchases.address,purchases.state,purchases.zipcode ,users.email FROM users INNER JOIN purchases ON users.id= purchases.user_id order by id ;';
+    db.any(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            res.render('pages/contact', { contact: data });
+        })
+        .catch(function (error) {
+            console.log('ERROR:' + error);
+        })
+});
 //Run App
 var port = process.env.PORT || 8080;
 app.listen(port, function () {

@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+<h2>Total Purchase</h2>
+<hr>
+<table class="table">
+    <thead>
+        <tr class="text-center bg-primary">
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>E-mail</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <% contact.forEach(function(contact){ %>
+        <tr>
+            <td scope="row">
+                <%= contact.id%>
+            </td>
+            <td>
+                <%= contact.name%>
+            </td>
+            <td>
+                <%= contact.address%> <%= contact.state%> <%= contact.zipcode%>
+            </td>
+                
+            <td>
+                <%= contact.email%>
+            </td>
+            
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+<% include ../partials/footer %>

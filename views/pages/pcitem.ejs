@@ -1,33 +1,33 @@
 <% include ../partials/header %>
-<h2>Purchase Items</h2>
+<h2>Total Purchase</h2>
 <hr>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="bg-success">
             <th>Purchase ID</th>
-            <th>Product ID</th>
+            <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>State</th>
+            <th>Total</th>
         </tr>
     </thead>
     <tbody>
-        <% pcitem.forEach(function(pcitem){ %>
+        <% totalpurchase.forEach(function(totalpurchase){ %>
         <tr>
             <td scope="row">
-                <%= pcitem.purchase_id%>
+                <%= totalpurchase.purchase_id%>
             </td>
             <td>
-                <%= pcitem.product_id%>
+                <%= totalpurchase.name%>
             </td>
             <td>
-                <%= pcitem.price%>
+                <%= totalpurchase.price%>
             </td>
             <td>
-                <%= pcitem.quantity%>
+                <%= totalpurchase.quantity%>
             </td>
             <td>
-                <%= pcitem.state%>
+                <%= totalpurchase.total%>
             </td>
             
         </tr>
